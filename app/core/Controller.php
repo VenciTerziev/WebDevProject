@@ -12,5 +12,10 @@
  * @author Таня
  */
 class Controller {
-    //put your code here
+    private $view = 'home';
+    
+    public function view ($view, $data = [])
+    {
+        require_once '../app/views/' . $view . '.php';
+    }
 }
