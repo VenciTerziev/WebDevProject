@@ -14,4 +14,3 @@ Database::setInstance(
 );
 
 $app = new App;
-
