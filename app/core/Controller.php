@@ -12,17 +12,17 @@
  * @author Таня
  */
 class Controller {
-    private $model = 'user';
-    private $view = 'home';
+    protected $model = 'user';
+    protected $view = 'home';
     
-    public function model($model, $method)
+    public function loadModel($model, $method)
     {
-        require_once '../app/models/' . $model . '.php';
-        $this->model = $model;
+        require_once '../app/models/' . $model . 'Model.php';
+        $this->model = $model . 'Model';
         $this->model = new $this->model($method);
     }
     
-    public function view ($view, $data = [])
+    public function loadView ($view, $data = [])
     {
         require_once '../app/views/' . $view . '.php';
     }

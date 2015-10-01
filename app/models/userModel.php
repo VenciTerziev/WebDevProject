@@ -11,7 +11,9 @@
  *
  * @author Таня
  */
-class User {
+class userModel {
+    const GOLD_DEFAULT = 1500;
+    const FOOD_DEFAULT = 1500;
     
     public function __construct($method) {
         $this->$method();
@@ -39,9 +41,10 @@ class User {
         }
 
         $userRow = $result->fetch();
-
+        
         if (password_verify($password, $userRow['password'])) {
-            return $userRow['id'];
+            $_SESSION['userId'] = $userRow['id'];
+            header('Location: /WebDevProject/public/home');
         }
 
         throw new \Exception('Invalid credentials');
@@ -85,7 +88,7 @@ class User {
                 SELECT $userId, id, 0 FROM buildings
             ");
 
-            return true;
+            $this->login();
         }
 
         throw new \Exception('Cannot register user');
@@ -99,5 +102,11 @@ class User {
         $result->execute([ $username ]);
 
         return $result->rowCount() > 0;
+    }
+    
+    public function logout()
+    {
+        unset($_SESSION['userId']);
+        header('Location: /WebDevProject/public/home');
     }
 }

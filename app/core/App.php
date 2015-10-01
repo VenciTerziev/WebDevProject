@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /**
  * Description of App
  *
@@ -15,8 +15,11 @@ class App {
 
 
     public function __construct() {
-        $url = $this->parseUrl();
+        if (isset($_SESSION['userId'])) {
+            $this->method = 'logged';
+        }
         
+        $url = $this->parseUrl();
         if (file_exists('../app/controllers/' . $url[0] . '.php'))
         {
             $this->controller = $url[0];
