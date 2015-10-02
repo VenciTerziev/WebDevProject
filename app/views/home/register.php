@@ -1,6 +1,13 @@
-<form method="post">
-    <input type ="text" name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password">   
-    <input type="password" name="confirmPassword" placeholder="Confirm Password">
-    <input type="submit" />
-</form>
+<?php
+    require_once '/../../ViewHelpers/FormViewHelper.php';
+    
+    echo "<h1>Register</h1>";
+    
+    \FormViewHelper::create()
+            ->addAttribute('method', 'post')
+            ->setTextField('username', ['placeholder' => 'Username'])
+            ->setPasswordField('password', ['placeholder' => 'Password'])
+            ->setPasswordField('confirmPassword', ['placeholder' => 'Confirm Password'])
+            ->setSubmitButton('Register')
+            ->render();
+?>

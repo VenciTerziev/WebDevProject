@@ -1,14 +1,20 @@
 <?php
+require_once '/../../ViewHelpers/TableViewHelper.php';
+
 $rows = $_SESSION['temp'];
 $count = 1;
 echo "<h1>Ranking</h1>";
-echo "<table>";
+
+$table = TableViewHelper::create()
+            ->setTableAttributes(["padding-right" => "10px"]);
+
 foreach ($rows as $row) {
-    echo '<tr><td style="padding-right: 10px">' . $count . "</td><td>".$row['username'] ."</td></tr>";
+    $table->addRow([$count, $row['username']]);
     $count++;
 }
-echo "</table>";
+echo $table->render();
+
 ?>
-<a href="/WebDevProject/public/home/logged">Home</a>
+<a href="/WebDevProject/public/home">Home</a>
 
 

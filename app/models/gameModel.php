@@ -16,14 +16,17 @@ class gameModel {
     public function __construct($method) {
         $this->$method();
     }
-    
+     /**
+     * @Authorize error:("You are not logged in!")
+     * @throws \Exception
+     */
     public function ranking()
     {
         $db = Database::getInstance('app');
         
         $result = $db->prepare("
             SELECT
-                id, username
+                username
             FROM
                 users
         ");

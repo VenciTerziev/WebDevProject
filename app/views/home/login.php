@@ -1,5 +1,12 @@
-<form method="POST">
-    <input type ="text" name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" />
-</form>
+<?php
+    require_once '/../../ViewHelpers/FormViewHelper.php';
+    
+    echo "<h1> Login </h1>";
+    
+    \FormViewHelper::create()
+            ->addAttribute('method', 'post')
+            ->setTextField('username', ['placeholder' => 'Username'])
+            ->setPasswordField('password', ['placeholder' => 'Password'])
+            ->setSubmitButton('Login')
+            ->render();
+?>
