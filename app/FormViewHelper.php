@@ -12,5 +12,7 @@
  * @author Таня
  */
 class FormViewHelper {
-    //put your code here
+    public function __construct() {
+        ;
+    }
 }
