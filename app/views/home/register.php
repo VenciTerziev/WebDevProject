@@ -11,3 +11,4 @@
             ->setSubmitButton('Register')
             ->render();
 ?>
+<a href="/WebDevProject/public/home">Home</a>

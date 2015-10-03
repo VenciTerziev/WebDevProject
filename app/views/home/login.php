@@ -10,3 +10,4 @@
             ->setSubmitButton('Login')
             ->render();
 ?>
+<a href="/WebDevProject/public/home">Home</a>

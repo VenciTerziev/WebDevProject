@@ -11,18 +11,23 @@
  *
  * @author Таня
  */
+require_once '/BindingModels/LoginBindingModel.php';
+require_once '/BindingModels/RegisterBindingModel.php';
 class userModel {
     const GOLD_DEFAULT = 1500;
     const FOOD_DEFAULT = 1500;
     
-    public function __construct($method) {
+    public function __construct($method, $bindingModel = null) {
+        if ($bindingModel != null) {
+            $this->$method($bindingModel);
+        }
         $this->$method();
     }
     
-    public function login()
+    public function login(LoginBindingModel $model)
     {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = $model->getUsername();
+        $password = $model->getPassword();
         
         $db = Database::getInstance('app');
         
@@ -50,11 +55,11 @@ class userModel {
         throw new \Exception('Invalid credentials');
     }
     
-    public function register()
+    public function register(RegisterBindingModel $model)
     {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $confirm = $_POST['confirmPassword'];
+        $username = $model->getUsername();
+        $password = $model->getPassword();
+        $confirm = $model->getConfirmPassword();
 
         if ($password != $confirm) {
             throw new \Exception("Passwords do not match");
@@ -87,8 +92,8 @@ class userModel {
                 INSERT INTO user_buildings (user_id, building_id, level_id)
                 SELECT $userId, id, 0 FROM buildings
             ");
-
-            $this->login();
+            $LoginBM = new LoginBindingModel(['username' => $username,'password' => $password]);
+            $this->login($LoginBM);
         }
 
         throw new \Exception('Cannot register user');

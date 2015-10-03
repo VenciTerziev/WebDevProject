@@ -99,8 +99,7 @@ class FormViewHelper {
 
     public function setSubmitButton($buttonName = 'Submit')
     {
-        $this->inputs .= "<input type=\"submit\" value=\"$buttonName\"/>";
-        
+        $this->inputs .= "<input type=\"submit\" name=\"submit\" value=\"$buttonName\" />";
         return $this;
     }
     

@@ -15,6 +15,10 @@ class Home extends Controller
 {
    public function index()
    {       
+        if (isset($_SESSION['userId'])) {
+           header('Location: /WebDevProject/public/home');
+       }
+       
        $this->loadView('home/home');
    }
    
@@ -26,8 +30,8 @@ class Home extends Controller
        
        
        $this->loadView('home/login');
-       if (isset($_POST['username'], $_POST['password'])) {
-           $this->loadModel('user', 'login');
+       if (isset($_POST['submit'])) {
+           $this->loadModel('user', 'login', true);
        }
    }
    
@@ -38,13 +42,16 @@ class Home extends Controller
        }
        
        $this->loadView('home/register');
-        if (isset($_POST['username'], $_POST['password'], $_POST['confirmPassword'])) {
-           $this->loadModel('user', 'register');
+        if (isset($_POST['submit'])) {
+           $this->loadModel('user', 'register', true);
        }
    }
    
    public function logged()
    {
+       if (!isset($_SESSION['userId'])) {
+           header('Location: /WebDevProject/public/home');
+       }
        $this->loadView('home/logged');
    }
    
