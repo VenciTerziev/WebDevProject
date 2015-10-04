@@ -25,10 +25,9 @@ class gameModel {
         $db = Database::getInstance('app');
         
         $result = $db->prepare("
-            SELECT
-                username
-            FROM
-                users
+            SELECT username, food + gold as Score
+            FROM users
+            ORDER BY Score DESC, username
         ");
         $result->execute();
         

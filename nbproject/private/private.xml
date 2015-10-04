@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/WebDevProject/app/core/Controller.php</file>
-            <file>file:/C:/xampp/htdocs/WebDevProject/app/.htaccess</file>
+            <file>file:/C:/xampp/htdocs/WebDevProject/app/views/home/home.php</file>
+            <file>file:/C:/xampp/htdocs/WebDevProject/app/views/user/profile.php</file>
+            <file>file:/C:/xampp/htdocs/WebDevProject/app/core/Database.php</file>
+            <file>file:/C:/xampp/htdocs/WebDevProject/app/views/home/logged.php</file>
             <file>file:/C:/xampp/htdocs/WebDevProject/app/core/App.php</file>
+            <file>file:/C:/xampp/htdocs/WebDevProject/app/views/home/login.php</file>
             <file>file:/C:/xampp/htdocs/WebDevProject/public/index.php</file>
-            <file>file:/C:/xampp/htdocs/WebDevProject/app/init.php</file>
-            <file>file:/C:/xampp/htdocs/WebDevProject/public/.htaccess</file>
-            <file>file:/C:/xampp/htdocs/WebDevProject/app/controllers/home.php</file>
+            <file>file:/C:/xampp/htdocs/WebDevProject/app/views/home/register.php</file>
         </group>
     </open-files>
 </project-private>

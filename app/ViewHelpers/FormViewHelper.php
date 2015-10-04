@@ -15,7 +15,7 @@ class FormViewHelper {
     
     private static $_instance = null;
     private $inputs = '';
-    private $attributes = [];
+    private $attributes = array();
     private $name = '';
     
     public static function create()
@@ -75,7 +75,7 @@ class FormViewHelper {
         return $this;
     }
     
-    public function setTextField($name, $attributes = [])
+    public function setTextField($name, $attributes = array())
     {
         $this->inputs .= "<input type=\"text\" name=\"$name\" ";
         
@@ -87,7 +87,7 @@ class FormViewHelper {
         return $this;
     }
     
-    public function setPasswordField($name , $attributes = [] )
+    public function setPasswordField($name , $attributes = array() )
     {
         $this->inputs .= "<input type=\"password\" name=\"$name\" ";
         foreach ($attributes as $k => $v) {
@@ -151,7 +151,7 @@ class FormViewHelper {
         echo $this->inputs;
             
         $this->inputs = '';
-        $this->attributes = [];
+        $this->attributes = array();
         $this->name = '';
     }
 }

@@ -12,5 +12,4 @@ Database::setInstance(
     \DatabaseConfig::DB_NAME,
     \DatabaseConfig::DB_HOST
 );
-
 $app = new App;

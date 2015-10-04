@@ -9,7 +9,7 @@ $table = TableViewHelper::create()
             ->setTableAttributes(["padding-right" => "10px"]);
 
 foreach ($rows as $row) {
-    $table->addRow([$count, $row['username']]);
+    $table->addRow([$count, htmlspecialchars($row['username']), htmlspecialchars($row['Score'])]);
     $count++;
 }
 echo $table->render();

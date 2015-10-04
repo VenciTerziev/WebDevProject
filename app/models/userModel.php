@@ -13,7 +13,9 @@
  */
 require_once '/BindingModels/LoginBindingModel.php';
 require_once '/BindingModels/RegisterBindingModel.php';
-class userModel {
+
+class userModel 
+{
     const GOLD_DEFAULT = 1500;
     const FOOD_DEFAULT = 1500;
     
@@ -72,8 +74,8 @@ class userModel {
         }
 
         $result = $db->prepare("
-            INSERT INTO users (username, password, gold, food)
-            VALUES (?, ?, ?, ?);
+            INSERT INTO users (username, password, gold, food, last_log)
+            VALUES (?, ?, ?, ?, ?);
         ");
 
         $result->execute(
@@ -81,7 +83,8 @@ class userModel {
                 $username,
                 password_hash($password, PASSWORD_DEFAULT),
                 self::GOLD_DEFAULT,
-                self::FOOD_DEFAULT
+                self::FOOD_DEFAULT,
+                date("Y/m/d h:i:sa")
             ]
         );
 
@@ -113,5 +116,45 @@ class userModel {
     {
         unset($_SESSION['userId']);
         header('Location: /WebDevProject/public/home');
+    }
+    
+    public function profile()
+    {
+        $data = $this->getInfo($_SESSION['userId']);  
+
+        $timeNow = strtotime(date("Y/m/d h:i:s"));
+        $timeLastLog = strtotime($data['last_log']);
+        $diffInMinute =  round(abs($timeNow - $timeLastLog) / 60,2);
+        
+        $gold = round($data['gold'] + $data['gold_income'] / 60 *  $diffInMinute, 0);
+        $food = round($data['food'] + $data['food_income'] / 60 *  $diffInMinute, 0);
+        
+        $db = Database::getInstance('app');
+        
+        $result = $db->prepare("UPDATE users 
+            set gold = ?, food = ?, last_log = ?
+            WHERE id = ?;"
+        );
+        $result->execute([$gold, $food, date("Y/m/d h:i:s"), $_SESSION['userId']]);
+        $result->fetch();
+        
+        $data = $this->getInfo($_SESSION['userId']);
+        $_POST['temp'] = $data;
+    }
+    
+    public function getInfo($id)
+    {
+        $db = Database::getInstance('app');
+
+        $result = $db->prepare("
+            SELECT
+                id, username, password, gold, food, gold_income, food_income, last_log
+            FROM
+                users
+            WHERE id = ?
+        ");
+
+        $result->execute([$id]);
+        return $result->fetch();
     }
 }

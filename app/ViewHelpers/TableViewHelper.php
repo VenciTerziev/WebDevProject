@@ -9,7 +9,7 @@ class TableViewHelper
 {
     private static $_instance = null;
     private $inputs = '';
-    private $attributes = [];
+    private $attributes = array();
     
     public static function create()
     {
@@ -19,7 +19,7 @@ class TableViewHelper
         return self::$_instance;
     }
     
-    public function addRow($cellValues = [])
+    public function addRow($cellValues = array())
     {
         $this->inputs .= "<tr>";
         foreach ($cellValues as $cell) {
@@ -30,7 +30,7 @@ class TableViewHelper
         return $this;
     }
     
-    public function setTableAttributes($attributes = [])
+    public function setTableAttributes($attributes = array())
     {
         foreach ($attributes as $k => $v) {
             $this->attributes[$k] = $v;
